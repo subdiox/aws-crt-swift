@@ -1,4 +1,4 @@
-// swift-tools-version:5.7
+// swift-tools-version:5.10
 import PackageDescription
 
 let excludesFromAll = ["tests", "cmake", "CONTRIBUTING.md",
@@ -266,7 +266,8 @@ packageTargets.append(contentsOf: [
                         "AwsCCommon",
                         "AwsCChecksums",
                         "AwsCEventStream"],
-        path: "Source/AwsCommonRuntimeKit"
+        path: "Source/AwsCommonRuntimeKit",
+        swiftSettings: [.interoperabilityMode(.Cxx)]
     ),
     .testTarget(
         name: "AwsCommonRuntimeKitTests",
@@ -279,7 +280,8 @@ packageTargets.append(contentsOf: [
     .executableTarget(
         name: "Elasticurl",
         dependencies: ["AwsCommonRuntimeKit"],
-        path: "Source/Elasticurl"
+        path: "Source/Elasticurl",
+        swiftSettings: [.interoperabilityMode(.Cxx)]
     )
 ] )
 package.targets = packageTargets
